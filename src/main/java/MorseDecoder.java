@@ -53,6 +53,15 @@ public class MorseDecoder {
 
         double[] sampleBuffer = new double[BIN_SIZE * inputFile.getNumChannels()];
         for (int binIndex = 0; binIndex < totalBinCount; binIndex++) {
+            int sum = 0;
+            inputFile.readFrames(sampleBuffer, BIN_SIZE);
+            for (int sampleIndex = 0; sampleIndex <= BIN_SIZE; sampleIndex++) {
+                sum += sampleBuffer[sampleIndex];
+
+            }
+            returnBuffer[binIndex] = sum;
+
+
             // Get the right number of samples from the inputFile
             // Sum all the samples together and store them in the returnBuffer
         }
@@ -86,6 +95,17 @@ public class MorseDecoder {
         // else if ispower and not waspower
         // else if issilence and wassilence
         // else if issilence and not wassilence
+        boolean ispower = false;
+        boolean waspower = false;
+        boolean issilence = false;
+        boolean wassilence = false;
+        String output = "";
+        for (int i = 0; i < powerMeasurements.length; i++) {
+            if (powerMeasurements[i] >= POWER_THRESHOLD) {
+
+
+            }
+        }
 
         return "";
     }
